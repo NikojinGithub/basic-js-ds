@@ -22,10 +22,42 @@ const { NotImplementedError } = require('../extensions/index.js');
  *   }
  * }
  */
-function removeKFromList(/* l, k */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+
+// class ListNode {
+//      constructor(value, next) {
+//        this.value = value;
+//        this.next = next;
+//      }
+//    }
+
+//   const l = [3, 1, 2, 3, 4, 5];
+//   const head = new ListNode(l[0],
+//                 new ListNode(l[1],
+//                   new ListNode(l[2],
+//                     new ListNode(l[3],
+//                       new ListNode(l[4],
+//                         new ListNode(l[5], null))))));
+
+// console.log(head);
+
+function removeKFromList(l, k) {
+  while(l.value === k) l = l.next;  //Проверяем первый элемент списка, меняем его на второй если равен k.
+
+  let current = l; //current содержить список где первый элемент 100% не равен k.
+
+  while(current.next !== null){ //Выполняем до тех пор пока следующий элемент не является последним.
+    if(current.next.value === k){ //Если следующее значение совпадает с k.
+      current.next = current.next.next; //Тогда меняем следующее значение на через одно.
+    } else {
+      current = current.next; //Если не совпадает, то переходим на следующий узел.
+    }
+  }
+
+  return l;
+
 }
+
+// console.log(removeKFromList(head, 3))
 
 module.exports = {
   removeKFromList
