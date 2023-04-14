@@ -13,19 +13,27 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 class Stack {
-  push(/* element */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  constructor(){      //Создание пустого массива через конструктор.
+     this.arr = [];
   }
 
-  pop() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  push(element) {                 //Добавляем элемент в массив.
+    this.arr.push(element);
   }
 
-  peek() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  pop() {                         //Если массив пустой возвращает undefined. Если не пустой возвращает последний элемент и удаляет его.
+    if(this.arr.length === 0){
+      return undefined;
+    }
+    const last = this.arr[this.arr.length - 1];
+    // this.arr.splice(this.arr.length - 1, 1);
+    this.arr.pop();
+    return last;
+  }
+
+  peek() {                                        //Возвращает последний элемент массива.
+    const last = this.arr[this.arr.length - 1];
+    return last;
   }
 }
 
