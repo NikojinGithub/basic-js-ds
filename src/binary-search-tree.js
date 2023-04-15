@@ -19,46 +19,63 @@ class BinarySearchTree {
   add(data) {
     this.treeNode = addSomeNode(this.treeNode, data);
 
-    function addSomeNode(node, value){
+    function addSomeNode(node, data){
       if(!node){
-        return new Node(value);
+        return new Node(data);
       }
 
-      if(node.value === value){
+      if(node.data === data){
         return node;
       }
 
-      if(value < node.value){
-        node.left = addSomeNode(node.left, value);
+      if(data < node.data){
+        node.left = addSomeNode(node.left, data);
       } else {
-        node.right = addSomeNode(node.right, value);
+        node.right = addSomeNode(node.right, data);
       }
 
       return node;
     }
   }
 
-  has(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  has(data) {
+    return hasSomeNode(this.treeNode, data);
+
+    function hasSomeNode(node, data){
+      if(!node) {
+        return false;
+      }
+
+      if (node.data === data){
+        return true;
+      }
+
+      if(data < node.data){
+        return hasSomeNode(node.left, data);
+      } else {
+        return hasSomeNode(node.right, data);
+      }
+    }
   }
 
   find(data) {
-  if(!this.treeNode){
+    if(!this.treeNode){
       return null;
     }
 
-    if(this.treeNode.value === data){
-      return this.treeNode;
+    let current = this.treeNode;
+    if(current.data === data) return current;
+    else {
+      while(current){
+        if(data < current.data){
+          current = current.left;
+        } else if(data > current.data) {
+          current = current.right;
+        } else {
+          return current;
+        }
+      }
     }
-
-    let node = this.treeNode;
-    if(data < node.value) {
-      node = node.left;
-    } else {
-      node = node.right;
-    }
-
     return null;
   }
 
